@@ -49,10 +49,11 @@
 .container {
   grid-row: 2 / 3;
   display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  grid-template-columns: repeat(4, min-content);
   grid-template-rows: repeat(4, 1fr);
   justify-items: center;
+  justify-content: center;
   max-width: 800px;
   margin: 0 auto;
   padding: 16px;
@@ -63,13 +64,14 @@
 .card {
   /* define a proporção do tamanho da carta */
   aspect-ratio: 4/3;
-  width: 100%;
-  max-width: 120px;
-  background-color: blue;
+  width: 6rem;
+  max-width: 100px;
   border-radius: 0.5rem;
+  border: solid 2px #fff;
   position: relative;
   transform-style: preserve-3d;
   transition: all 400ms ease-in-out;
+  display: block;
 }
 
 .face {
@@ -88,6 +90,7 @@
 }
 
 .back {
+  
   background-color: #aaa;
   background-image: url(/assets/images/mind.png);
   backface-visibility: hidden;
