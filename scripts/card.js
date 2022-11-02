@@ -1,9 +1,12 @@
 import {getImagesName} from "./images_repository_services.js";
 
 let cardsRevealed = []
+let parsMatched = 0
+let totalPars = 0
 
 const createCards = async (numberOfPars) => {
   let images = await getImagesName(numberOfPars)
+  totalPars = numberOfPars
   let cards = []
   for(let i = 0; i < numberOfPars*2; i++) {
     cards.push(createCard(images[i]));
@@ -38,22 +41,41 @@ const revealCard = ({target}) => {
   }
 
   if(cardsRevealed.length < 2) {
-
     target.parentNode.classList.add('reveal-card');
     cardsRevealed.push(target.parentNode);
   }
   
-
   if(cardsRevealed.length === 2) {
-    setTimeout(checkMatching, 1000);
+    setTimeout(checkMatching, 800);
+    // checkMatching();
   }
 }
 
-const checkMatching = () => {
-  cardsRevealed.map((item) => {
+const hiddenCards = (cards) => {
+  cards.map((item) => {
     item.classList.remove("reveal-card");
   })
+}
+
+const checkMatching = () => {
+  let [card1, card2] = cardsRevealed
+
+  if(cardsRevealed[0].childNodes[0].style.backgroundImage === cardsRevealed[1].childNodes[0].style.backgroundImage) {
+    cardsRevealed.map(item => {
+      item.childNodes[0].style.filter = "grayscale(100%)";
+    })
+    parsMatched++
+    checkGame()
+  } else {
+    setTimeout(hiddenCards(cardsRevealed), 500)
+  }
   cardsRevealed = []
+}
+
+const checkGame = () => {
+  if(parsMatched === totalPars) {
+    alert("You win!");
+  }
 }
 
 export {createCards}

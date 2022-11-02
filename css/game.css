@@ -67,7 +67,7 @@
   width: 6rem;
   max-width: 100px;
   border-radius: 0.5rem;
-  border: solid 2px #fff;
+  /* border: solid 2px #fff; */
   position: relative;
   transform-style: preserve-3d;
   transition: all 400ms ease-in-out;
