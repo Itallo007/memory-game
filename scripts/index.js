@@ -1,14 +1,8 @@
-import {createCards} from "./card.js";
-
-const mountGrid = (cards) => {
-  let containerElement = document.querySelector('.container');
-  cards.map(item => {
-    containerElement.appendChild(item);
-  })
-}
+import Game from "./game.js";
 
 const loadGame = async () => {
-  mountGrid(await createCards(10))
+  const game = new Game()
+  game.create(15)
   
 }
 
