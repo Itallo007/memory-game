@@ -1,31 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 .page {
   width: 100%;
   display: grid;
-  grid-template-rows: 2fr 7fr 2fr;
+  grid-template-rows: 20vh 80vh 10vh;
   grid-template-columns: 1fr;
-  background-color: #eee;
+  background-color: #efefef;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 /* Header */
 .page header {
   grid-row: 1 / 2;
-  background-color: #e06e58;
+  box-shadow: 0px 2px 8px #9e9eae;
 
   display: flex;
   flex-direction: column;
 }
 
 .title {
-  background-color: aquamarine;
-  /* flex-basis: 100%; */
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.3rem;
+  background-image: url(../assets/images/backgroundWhite.jpg);
   flex-grow: 3;
   padding: 0 2rem;
   text-align: center;
 }
 
 .main-menu {
-  background-color: pink;
+  background-color: #6f79a6;
   flex-grow: 1;
 
   padding: 0 2rem;
@@ -46,8 +51,13 @@
 }
 
 /* Main */
+main {
+  display: flex;
+  justify-content: center;
+}
 .container {
   grid-row: 2 / 3;
+  align-self: center;
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(6, min-content);
@@ -57,7 +67,6 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 16px;
-  /* background-color: violet; */
 }
 
 /* Card */
@@ -67,6 +76,7 @@
   width: 6rem;
   max-width: 100px;
   border-radius: 0.5rem;
+  box-shadow: 1px 2px 5px #4c4e4e;
   /* border: solid 2px #fff; */
   position: relative;
   transform-style: preserve-3d;
@@ -90,8 +100,7 @@
 }
 
 .back {
-  
-  background-color: #aaa;
+  background-color: rgb(168, 175, 190);
   background-image: url(/assets/images/mind.png);
   backface-visibility: hidden;
 }
