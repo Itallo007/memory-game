@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 .page {
   width: 100%;
@@ -9,28 +8,28 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background: linear-gradient(to bottom right,#a3b3eb, #bcffe7);
 }
 
 /* Header */
 .page header {
   grid-row: 1 / 2;
-  box-shadow: 0px 2px 8px #9e9eae;
+  padding: 1rem;
+  background-image: url(../assets/images/backgroundWhite.jpg);
+  box-shadow:  0px 4px 8px rgba(76, 78, 78, .5);
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.title {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 1.3rem;
-  background-image: url(../assets/images/backgroundWhite.jpg);
-  flex-grow: 3;
-  padding: 0 2rem;
-  text-align: center;
+#title {
+  font-size: 2.5rem;
+  align-self: flex-start;
 }
 
 .main-menu {
-  background-color: #6f79a6;
+  background-color: #A4B3EA;
   flex-grow: 1;
 
   padding: 0 2rem;
@@ -53,7 +52,24 @@
 /* Main */
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 0.5rem;
+  
+}
+
+.controls {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.controls #stopwatch{
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(76, 78, 78, .5);
+  background: transparent;
 }
 .container {
   grid-row: 2 / 3;
@@ -95,12 +111,12 @@ main {
 }
 
 .front {
-  background-color: #ddd;
+  background-color: #fff;
   transform: rotateY(180deg);
 }
 
 .back {
-  background-color: rgb(168, 175, 190);
+  background-color: #e0e7ff;
   background-image: url(/assets/images/mind.png);
   backface-visibility: hidden;
 }

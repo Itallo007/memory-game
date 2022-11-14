@@ -1,5 +1,6 @@
 import {getImagesName} from "./images_repository_services.js";
 import Card from "./card.js";
+import {start} from "./timer.js";
 
 export default class Game {
   static instance;
@@ -22,6 +23,7 @@ export default class Game {
     this.setOfCards = this.createCards();
     this.totalOfParsFormed = 0;
     this.mountGrid()
+    start()
   }
   
   createCards = () => {
