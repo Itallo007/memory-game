@@ -22,7 +22,9 @@ export default class Game {
     this.totalOfParsFormed = 0;
     this.setOfCards = this.createCards();
     this.totalOfParsFormed = 0;
-    this.mountGrid()
+    let columns = totalPars <= 20 ? 8 : 10;
+    console.log(columns)
+    this.mountGrid(columns)
     start()
   }
   
@@ -35,9 +37,10 @@ export default class Game {
     return cards;
   }
 
-  mountGrid = () => {
+  mountGrid = (columns) => {
     let containerElement = document.querySelector('.container');
     containerElement.innerHTML = '';
+    containerElement.style.gridTemplateColumns = `repeat(${columns}, 6rem)`;
     this.setOfCards.map(item => {
       containerElement.appendChild(item.htmlElement);
     })
