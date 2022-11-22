@@ -58,7 +58,7 @@ export default class Game {
     }
     
     if(this.cardsRevealed.length === 2) {
-      setTimeout(this.checkMatching, 800);
+      this.checkMatching()
     }
   }
 
@@ -67,13 +67,15 @@ export default class Game {
   
     if(cardObj1.htmlElement.childNodes[0].style.backgroundImage === cardObj2.htmlElement.childNodes[0].style.backgroundImage) {
       this.cardsRevealed.map(item => {
-        item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
+        setTimeout(() => {
+          item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
+        }, 400)
       })
       this.totalOfParsFormed++
       this.cardsRevealed = []
       this.checkGame()
     } else {
-      setTimeout(this.hiddenCards, 500)
+      setTimeout(this.hiddenCards, 700)
     }
   }
   
