@@ -118,7 +118,7 @@ main {
 
 .back {
   background-color: #e0e7ff;
-  background-image: url(/assets/images/mind.png);
+  background-image: url(../assets/images/mind.png);
   backface-visibility: hidden;
 }
 

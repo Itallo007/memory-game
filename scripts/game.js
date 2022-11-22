@@ -23,7 +23,6 @@ export default class Game {
     this.setOfCards = this.createCards();
     this.totalOfParsFormed = 0;
     let columns = totalPars <= 20 ? 8 : 10;
-    console.log(columns)
     this.mountGrid(columns)
     start()
   }
