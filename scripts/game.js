@@ -89,7 +89,7 @@ export default class Game {
     if(this.totalOfParsFormed === this.totalPars) {
       setTimeout(() => {
         alert('You win!');
-        this.create(15);
+        this.create(this.totalPars);
       }, 300);
     }
   }
