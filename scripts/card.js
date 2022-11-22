@@ -13,7 +13,7 @@ export default class Card {
     const back = this.#createElementWithClass('div', 'face back');
     card.addEventListener('click', this.#reveal);
     
-    front.style.backgroundImage = `url('../images_repository/${imageName}')`
+    front.style.backgroundImage = `url('images_repository/${imageName}')`
     
     card.appendChild(front);
     card.appendChild(back);
