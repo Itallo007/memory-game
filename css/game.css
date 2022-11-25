@@ -59,17 +59,24 @@ main {
 }
 
 .controls {
-  width: 100%;
+  align-self: center;
+  width: 80vw;
   padding: 0.5rem;
+  /* margin: 1rem auto; */
   display: flex;
   flex-direction: row-reverse;
+  gap: 0.5rem;
 }
-.controls #stopwatch{
-  font-size: 1.5rem;
+.controls-content {
+  font-size: 1rem;
+  font-weight: bold;
   padding: 0.5rem;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(76, 78, 78, .5);
+  box-shadow: 0px 2px 4px 1px rgba(76, 78, 78, .5);
   background: transparent;
+}
+.controls-content .labelText {
+  font-weight: normal;
 }
 .container {
   grid-row: 2 / 3;
@@ -80,7 +87,7 @@ main {
   justify-items: center;
   justify-content: center;
   max-width: 80vw;
-  width: 100%;
+  width: 100vw;
 }
 
 /* Card */

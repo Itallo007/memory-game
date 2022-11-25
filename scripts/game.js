@@ -55,7 +55,7 @@ export default class Game {
 
     if(!this.currentAttempt) {
       this.currentAttempt = new Attempt();
-      this.totalAttempts.push(this.currentAttempt);
+      this.incrementTotalAttempts();
       this.currentAttempt.addCard(cardObj);
     } else {
       this.currentAttempt.addCard(cardObj);
@@ -97,6 +97,13 @@ export default class Game {
       card.hidden();
     })
     this.currentAttempt = null;
+  }
+
+  incrementTotalAttempts = () => {
+    if(this.currentAttempt) {
+      this.totalAttempts.push(this.currentAttempt)
+      document.getElementById("attCount").innerHTML = this.totalAttempts.length
+    }
   }
 
   checkGame = () => {
