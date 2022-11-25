@@ -1,13 +1,16 @@
 import {getImagesName} from "./images_repository_services.js";
 import Card from "./card.js";
 import {start} from "./timer.js";
+import Attempt from "./attempt.js";
 
 export default class Game {
   static instance;
   totalPars = 0;
   setOfCards = [];
-  cardsRevealed = []
+  cardsRevealed = [];
   totalOfParsFormed = 0;
+  totalAttempts = [];
+  currentAttempt = null;
 
   constructor() {
     if(!Game.instance) {
@@ -46,19 +49,29 @@ export default class Game {
   }
 
   revealCard(cardObj) {
-    
     if(cardObj.isRevealed) {
       return
     }
-    
-    if(this.cardsRevealed.length < 2) {
-      cardObj.isRevealed = true;
-      cardObj.htmlElement.classList.add('reveal-card');
-      this.cardsRevealed.push(cardObj);
-    }
-    
-    if(this.cardsRevealed.length === 2) {
-      this.checkMatching()
+
+    if(!this.currentAttempt) {
+      this.currentAttempt = new Attempt();
+      this.totalAttempts.push(this.currentAttempt);
+      this.currentAttempt.addCard(cardObj);
+    } else {
+      this.currentAttempt.addCard(cardObj);
+  
+      if(this.currentAttempt.successful) {
+        this.currentAttempt.cards.map(item => {
+          setTimeout(() => {
+            item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
+          }, 400)
+        })
+        this.currentAttempt = null
+        this.totalOfParsFormed++
+        this.checkGame()
+      } else {
+        setTimeout(this.hiddenCards, 700)
+      }
     }
   }
 
@@ -80,10 +93,10 @@ export default class Game {
   }
   
   hiddenCards = () => {
-    this.cardsRevealed.map(card => {
+    this.currentAttempt.cards.map(card => {
       card.hidden();
     })
-    this.cardsRevealed = [];
+    this.currentAttempt = null;
   }
 
   checkGame = () => {

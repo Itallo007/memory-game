@@ -11,7 +11,7 @@ export default class Card {
     const card = this.#createElementWithClass('div', 'card');
     const front = this.#createElementWithClass('div', 'face front');
     const back = this.#createElementWithClass('div', 'face back');
-    card.addEventListener('click', this.#reveal);
+    card.addEventListener('click', this.#handleClick);
     
     front.style.backgroundImage = `url('images_repository/${imageName}')`
     
@@ -27,8 +27,13 @@ export default class Card {
     return element;
   }
 
-  #reveal = ({target}) => {
+  #handleClick = () => {
     new Game().revealCard(this);
+  }
+
+  reveal = () => {
+    this.isRevealed = true;
+    this.htmlElement.classList.add("reveal-card");
   }
 
   hidden = () => {
