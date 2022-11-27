@@ -82,7 +82,7 @@ main {
   align-self: center;
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, minmax(auto, 6rem));
   justify-items: center;
   justify-content: center;
   width: 100%;
