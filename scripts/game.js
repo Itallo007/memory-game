@@ -42,7 +42,7 @@ export default class Game {
   mountGrid = (columns) => {
     let containerElement = document.querySelector('.container');
     containerElement.innerHTML = '';
-    containerElement.style.gridTemplateColumns = `repeat(${columns}, 6rem)`;
+    // containerElement.style.gridTemplateColumns = `repeat(${columns}, minmax(3rem, 6rem))`;
     this.setOfCards.map(item => {
       containerElement.appendChild(item.htmlElement);
     })
