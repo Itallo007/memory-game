@@ -5,7 +5,7 @@ import Attempt from "./attempt.js";
 
 export default class Game {
   static instance;
-  totalPars = 0;
+  currentLevel = null;
   setOfCards = [];
   totalOfParsFormed = 0;
   totalAttempts = [];
@@ -19,8 +19,8 @@ export default class Game {
     return Game.instance;
   }
 
-  create(totalPars) {
-    this.totalPars = totalPars;
+  create(level) {
+    this.currentLevel = level;
     this.totalOfParsFormed = 0;
     this.setOfCards = this.createCards();
     this.mountGrid()
@@ -28,7 +28,7 @@ export default class Game {
   }
   
   createCards = () => {
-    let images = getImagesName(this.totalPars);
+    let images = getImagesName(this.currentLevel.numberOfPars);
     let cards = []
     images.map(image => {
       cards.push(new Card(image));
@@ -86,10 +86,10 @@ export default class Game {
   }
 
   checkGame = () => {
-    if(this.totalOfParsFormed === this.totalPars) {
+    if(this.totalOfParsFormed === this.currentLevel.numberOfPars) {
       setTimeout(() => {
         alert('You win!');
-        this.create(this.totalPars);
+        this.create(this.currentLevel.next);
       }, 300);
     }
   }
