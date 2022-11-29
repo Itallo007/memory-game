@@ -7,7 +7,6 @@ export default class Game {
   static instance;
   totalPars = 0;
   setOfCards = [];
-  cardsRevealed = [];
   totalOfParsFormed = 0;
   totalAttempts = [];
   currentAttempt = null;
@@ -24,9 +23,7 @@ export default class Game {
     this.totalPars = totalPars;
     this.totalOfParsFormed = 0;
     this.setOfCards = this.createCards();
-    this.totalOfParsFormed = 0;
-    let columns = totalPars <= 20 ? 8 : 10;
-    this.mountGrid(columns)
+    this.mountGrid()
     start()
   }
   
@@ -39,10 +36,9 @@ export default class Game {
     return cards;
   }
 
-  mountGrid = (columns) => {
+  mountGrid = () => {
     let containerElement = document.querySelector('.container');
     containerElement.innerHTML = '';
-    // containerElement.style.gridTemplateColumns = `repeat(${columns}, minmax(3rem, 6rem))`;
     this.setOfCards.map(item => {
       containerElement.appendChild(item.htmlElement);
     })
@@ -72,23 +68,6 @@ export default class Game {
       } else {
         setTimeout(this.hiddenCards, 700)
       }
-    }
-  }
-
-  checkMatching = () => {
-    let [cardObj1, cardObj2] = [...this.cardsRevealed];
-  
-    if(cardObj1.htmlElement.childNodes[0].style.backgroundImage === cardObj2.htmlElement.childNodes[0].style.backgroundImage) {
-      this.cardsRevealed.map(item => {
-        setTimeout(() => {
-          item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
-        }, 400)
-      })
-      this.totalOfParsFormed++
-      this.cardsRevealed = []
-      this.checkGame()
-    } else {
-      setTimeout(this.hiddenCards, 700)
     }
   }
   
