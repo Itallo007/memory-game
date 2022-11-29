@@ -20,6 +20,8 @@ export default class Game {
   }
 
   create(level) {
+    this.currentAttempt = null;
+    this.totalAttempts = [];
     this.currentLevel = level;
     this.totalOfParsFormed = 0;
     this.setOfCards = this.createCards();
