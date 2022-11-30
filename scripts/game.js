@@ -7,8 +7,7 @@ export default class Game {
   static instance;
   currentLevel = null;
   setOfCards = [];
-  totalOfParsFormed = 0;
-  totalAttempts = [];
+  attempts = [];
   currentAttempt = null;
 
   constructor() {
@@ -20,10 +19,8 @@ export default class Game {
   }
 
   create(level) {
-    this.currentAttempt = null;
-    this.totalAttempts = [];
+    this.resetAttempts();
     this.currentLevel = level;
-    this.totalOfParsFormed = 0;
     this.setOfCards = this.createCards();
     this.mountGrid()
     start()
@@ -53,7 +50,7 @@ export default class Game {
 
     if(!this.currentAttempt) {
       this.currentAttempt = new Attempt();
-      this.incrementTotalAttempts();
+      this.incrementAttempts();
       this.currentAttempt.addCard(cardObj);
     } else {
       this.currentAttempt.addCard(cardObj);
@@ -65,7 +62,6 @@ export default class Game {
           }, 400)
         })
         this.currentAttempt = null
-        this.totalOfParsFormed++
         this.checkGame()
       } else {
         setTimeout(this.hiddenCards, 700)
@@ -80,11 +76,17 @@ export default class Game {
     this.currentAttempt = null;
   }
 
-  incrementTotalAttempts = () => {
+  incrementAttempts = () => {
     if(this.currentAttempt) {
-      this.totalAttempts.push(this.currentAttempt)
-      document.getElementById("attCount").innerHTML = this.totalAttempts.length
+      this.attempts.push(this.currentAttempt)
+      document.getElementById("attCount").innerHTML = this.attempts.length
     }
+  }
+
+  resetAttempts = () => {
+    this.currentAttempt = null;
+    this.attempts = [];
+    document.getElementById("attCount").innerHTML = '0';
   }
 
   checkGame = () => {
@@ -92,8 +94,12 @@ export default class Game {
       setTimeout(() => {
         alert('You win!');
         this.create(this.currentLevel.next);
-      }, 300);
+      }, 500);
     }
+  }
+
+  get totalOfParsFormed() {
+    return this.attempts.filter(item => item.successful).length
   }
 
 }
