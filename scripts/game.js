@@ -23,7 +23,10 @@ export default class Game {
     this.currentLevel = level;
     this.setOfCards = this.createCards();
     this.mountGrid()
-    start()
+    start(level.limitTime, () => {
+      window.confirm('Tempo esgotado')
+      this.create(level)
+    })
   }
   
   createCards = () => {

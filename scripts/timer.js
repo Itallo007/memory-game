@@ -1,10 +1,16 @@
 let startTime;
-let x;
+let showtimeKey;
+let timesUpKey;
 
-const start = () => {
+const start = (limitTime, handleTimesUp) => {
   startTime = Date.now();
-  x = setInterval(showTime, 1000);
+  showtimeKey = setInterval(showTime, 1000);
   // setTimeout(() => {clearInterval(x)}, 30000)
+  timesUpKey = setTimeout(() => {
+    stop()
+    handleTimesUp()
+  }, limitTime * 1000);
+
 }
 
 const showTime = () => {
@@ -19,7 +25,8 @@ const showTime = () => {
 }
 
 const stop = () => {
-  clearInterval(x);
+  clearInterval(showtimeKey);
+  clearInterval(timesUpKey);
 }
 
 export {start, stop}
