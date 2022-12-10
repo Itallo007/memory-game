@@ -65,9 +65,14 @@ export default class Game {
           }, 400)
         })
         this.currentAttempt = null
-        this.checkGame()
+        if (this.checkGame()) return
       } else {
         setTimeout(this.hiddenCards, 700)
+      }
+
+      if(this.attempts.length === this.currentLevel.numberOfAttempts) {
+        window.confirm("Você não tem mais tentativas!");
+        this.create(this.currentLevel);
       }
     }
   }
@@ -98,7 +103,9 @@ export default class Game {
         alert('You win!');
         this.create(this.currentLevel.next);
       }, 500);
+      return true;
     }
+    return false;
   }
 
   get totalOfParsFormed() {
