@@ -4,19 +4,11 @@ import {start} from "./timer.js";
 import Attempt from "./attempt.js";
 
 export default class Game {
-  static instance;
+  static #instance;
   currentLevel = null;
   setOfCards = [];
   attempts = [];
   currentAttempt = null;
-
-  constructor() {
-    if(!Game.instance) {
-      Game.instance = this;
-    }
-
-    return Game.instance;
-  }
 
   create(level) {
     this.currentLevel = level;
@@ -46,38 +38,12 @@ export default class Game {
     })
   }
 
-  revealCard(cardObj) {
-    if(cardObj.isRevealed) {
-      return
-    }
-
+  addCardToCurrentAttempt = (cardObj) => {
     if(!this.currentAttempt) {
       this.currentAttempt = new Attempt();
       this.incrementAttempts();
-      this.currentAttempt.addCard(cardObj);
-    } else {
-      this.currentAttempt.addCard(cardObj);
-  
-      if(this.currentAttempt.successful) {
-        this.currentAttempt.cards.map(item => {
-          setTimeout(() => {
-            item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
-          }, 400)
-        })
-        this.currentAttempt = null
-        if (this.checkGame()) return
-      } else {
-        setTimeout(this.hiddenCards, 700)
-      }
-      this.checkExhaustedAttempts();
-    }
-  }
-  
-  hiddenCards = () => {
-    this.currentAttempt.cards.map(card => {
-      card.hidden();
-    })
-    this.currentAttempt = null;
+    } 
+    this.currentAttempt.addCard(cardObj);
   }
 
   incrementAttempts = () => {
@@ -108,9 +74,27 @@ export default class Game {
     if(this.remainingAttempts === 0) {
       window.confirm("Você não tem mais tentativas!");
       this.create(this.currentLevel);
-      // setTimeout(() => {
-      // }, 200)
+      return false;
     }
+    return true;
+  }
+
+  lockTheGame = () => {
+    document.querySelector(".container").style.pointerEvents = "none";
+  }
+
+  unlockTheGame = () => {
+    if(this.checkExhaustedAttempts()) {
+      document.querySelector(".container").style.pointerEvents = "auto";
+    }
+  }
+
+  static get instance() {
+    if(!Game.#instance) {
+      Game.#instance = new Game();
+    }
+
+    return Game.#instance;
   }
 
   get totalOfParsFormed() {

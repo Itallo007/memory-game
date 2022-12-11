@@ -1,3 +1,4 @@
+import Game from "./game.js"
 
 export default class Attempt {
   cards = []
@@ -10,6 +11,7 @@ export default class Attempt {
     }
 
     if(this.cards.length === 2) {
+      Game.instance.lockTheGame()
       this.check()
     }
   }
@@ -17,6 +19,22 @@ export default class Attempt {
   check() {
     this.successful =  this.cards[0].htmlElement.childNodes[0].style.backgroundImage === this.cards[1].htmlElement.childNodes[0].style.backgroundImage
 
-    return this.successful
+    if(this.successful) {
+      this.cards.map(item => {
+        setTimeout(() => {
+          item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
+        }, 400)
+      })
+      if(Game.instance.checkGame()) return;
+      Game.instance.unlockTheGame()  
+    } else {
+      setTimeout(() => {
+        this.cards.map(item => {
+          item.hidden()
+        })
+        Game.instance.unlockTheGame()
+      }, 700)
+    }
+    Game.instance.currentAttempt = null
   }
 }

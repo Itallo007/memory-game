@@ -28,7 +28,8 @@ export default class Card {
   }
 
   #handleClick = () => {
-    new Game().revealCard(this);
+    if(this.isRevealed) return;
+    Game.instance.addCardToCurrentAttempt(this);
   }
 
   reveal = () => {
