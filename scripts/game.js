@@ -19,9 +19,9 @@ export default class Game {
   }
 
   create(level) {
-    this.resetAttempts();
     this.currentLevel = level;
     this.setOfCards = this.createCards();
+    this.resetAttempts();
     this.mountGrid()
     start(level.limitTime, () => {
       window.confirm('Tempo esgotado')
@@ -69,11 +69,7 @@ export default class Game {
       } else {
         setTimeout(this.hiddenCards, 700)
       }
-
-      if(this.attempts.length === this.currentLevel.numberOfAttempts) {
-        window.confirm("Você não tem mais tentativas!");
-        this.create(this.currentLevel);
-      }
+      this.checkExhaustedAttempts();
     }
   }
   
@@ -87,14 +83,14 @@ export default class Game {
   incrementAttempts = () => {
     if(this.currentAttempt) {
       this.attempts.push(this.currentAttempt)
-      document.getElementById("attCount").innerHTML = this.attempts.length
+      document.getElementById("attCount").innerHTML = this.remainingAttempts
     }
   }
 
   resetAttempts = () => {
     this.currentAttempt = null;
     this.attempts = [];
-    document.getElementById("attCount").innerHTML = '0';
+    document.getElementById("attCount").innerHTML = this.currentLevel.numberOfAttempts;
   }
 
   checkGame = () => {
@@ -108,8 +104,21 @@ export default class Game {
     return false;
   }
 
+  checkExhaustedAttempts = () => {
+    if(this.remainingAttempts === 0) {
+      window.confirm("Você não tem mais tentativas!");
+      this.create(this.currentLevel);
+      // setTimeout(() => {
+      // }, 200)
+    }
+  }
+
   get totalOfParsFormed() {
     return this.attempts.filter(item => item.successful).length
+  }
+
+  get remainingAttempts() {
+    return this.currentLevel.numberOfAttempts - this.attempts.length;
   }
 
 }
