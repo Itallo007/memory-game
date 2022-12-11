@@ -9,8 +9,13 @@ export default class Game {
   setOfCards = [];
   attempts = [];
   currentAttempt = null;
+  #score = 0;
+  #comboCount = 0;
+  #combo = 0;
 
   create(level) {
+    this.#resetScore();
+    this.#resetCombo();
     this.currentLevel = level;
     this.setOfCards = this.createCards();
     this.resetAttempts();
@@ -36,6 +41,29 @@ export default class Game {
     this.setOfCards.map(item => {
       containerElement.appendChild(item.htmlElement);
     })
+  }
+
+  incrementCombo = () => {
+    this.#comboCount++;
+    this.#combo = (this.#comboCount * this.#comboCount) * 10
+    document.querySelector('#comboCount').innerHTML = this.#combo
+  }
+
+  #resetCombo = () => {
+    this.#combo = 0
+    this.#comboCount = 0
+    document.querySelector('#comboCount').innerHTML = this.#combo
+  }
+
+  updateScore = () => {
+    this.#score += this.#combo
+    document.querySelector('#scoreCount').innerHTML = this.#score
+    this.#resetCombo()
+  }
+
+  #resetScore = () => {
+    this.#score = 0
+    document.querySelector('#scoreCount').innerHTML = this.#score
   }
 
   addCardToCurrentAttempt = (cardObj) => {
@@ -65,6 +93,7 @@ export default class Game {
         alert('You win!');
         this.create(this.currentLevel.next);
       }, 500);
+      this.updateScore();
       return true;
     }
     return false;

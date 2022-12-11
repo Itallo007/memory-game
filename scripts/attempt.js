@@ -25,9 +25,11 @@ export default class Attempt {
           item.htmlElement.childNodes[0].style.filter = "grayscale(100%)";
         }, 400)
       })
+      Game.instance.incrementCombo();
       if(Game.instance.checkGame()) return;
       Game.instance.unlockTheGame()  
     } else {
+      Game.instance.updateScore();
       setTimeout(() => {
         this.cards.map(item => {
           item.hidden()
