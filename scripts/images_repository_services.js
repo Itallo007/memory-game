@@ -50,7 +50,36 @@ let imageList = [
   'shark.png',              'snake.png',
   'spider.png',             'squirrel.png',
   'tiger.png',              'turtle.png',
-  'whale.png',              'zebra.png'
+  'whale.png',              'zebra.png','apple_juice.png',   'aubergine.png',      'avocado.png',
+  'baby_bottle.png',   'bacon.png',          'banana.png',
+  'beer.png',          'birthday_cake.png',  'bread.png',
+  'burger.png',        'candy.png',          'carrot.png',
+  'cauliflower.png',   'champagne.png',      'cheese.png',
+  'cherry.png',        'chili.png',          'chocolate.png',
+  'coconut.png',       'coffee.png',         'cookie.png',
+  'corn.png',          'crab.png',           'cucumber.png',
+  'cupcake.png',       'cutlery.png',        'donut.png',
+  'drumstick.png',     'egg.png',            'french_fries.png',
+  'fried_egg.png',     'fried_shrimp.png',   'garlic.png',
+  'glass_of_milk.png', 'grape.png',          'green_apple.png',
+  'hazelnut.png',      'honey.png',          'hot_dog.png',
+  'ice.png',           'ice_cream.png',      'ice_cream_cone.png',
+  'japanese_food.png', 'kale.png',           'kiwi.png',
+  'lemon.png',         'lobster.png',        'lollipop.png',
+  'mango.png',         'mate.png',           'milk-shake.png',
+  'mushroom.png',      'olive.png',          'onion.png',
+  'orange.png',        'oyster.png',         'pancake.png',
+  'peach.png',         'peanut.png',         'pear.png',
+  'pepper.png',        'pineapple.png',      'pizza.png',
+  'popcorn.png',       'potato.png',         'pudding.png',
+  'red_apple.png',     'rice.png',           'salad.png',
+  'salt.png',          'sandwich.png',       'shrimp.png',
+  'slice_of_cake.png', 'spaghetti.png',      'spoon.png',
+  'squid.png',         'steak.png',          'strawberry.png',
+  'sushi.png',         'sweet_potato.png',   'teapot.png',
+  'tomato.png',        'tomato_extract.png', 'watermelon.png',
+  'whiskey.png',       'wine.png'
+
 ]
 
 
