@@ -120,6 +120,19 @@ main {
 .front {
   background-color: #fff;
   transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.front span {
+  width: 90%;
+  height: fit-content;
+  font-size: 1rem;
+  font-weight: 700;
+  word-wrap: break-word;
+  text-align: center;
+  align-self: center;
 }
 
 .back {
