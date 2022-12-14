@@ -21,6 +21,8 @@ export default class Game {
     this.setOfCards = this.createCards();
     this.resetAttempts();
     this.mountGrid()
+    this.unlockTheGame();
+    this.#setLevel();
     start(level.limitTime, () => {
       window.confirm('Tempo esgotado')
       this.create(level)
@@ -43,6 +45,9 @@ export default class Game {
     this.setOfCards.map(item => {
       containerElement.appendChild(item.htmlElement);
     })
+    if (this.setOfCards.length > 40) {
+      containerElement.style.gridTemplateColumns = "repeat(10, minmax(auto, 6rem))";
+    }
   }
 
   incrementCombo = () => {
@@ -66,6 +71,10 @@ export default class Game {
   #resetScore = () => {
     this.#score = 0
     document.querySelector('#scoreCount').innerHTML = this.#score
+  }
+
+  #setLevel = () => {
+    document.querySelector('#level-number').innerHTML = this.currentLevel.levelIndex
   }
 
   addCardToCurrentAttempt = (cardObj) => {

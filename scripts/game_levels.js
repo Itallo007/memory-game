@@ -2,11 +2,11 @@ import Level from './level.js'
 
 const levels = []
 
-levels.push(new Level(1, 20, 200, 600))
+levels.push(new Level(1, 20, 200, 480))
 levels.push(new Level(2, 20, 150, 600))
-levels.push(new Level(3, 20, 100, 450))
-levels.push(new Level(4, 30, 150, 900))
-levels.push(new Level(5, 30, 100, 600))
+levels.push(new Level(3, 30, 150, 600))
+levels.push(new Level(4, 30, 150, 530))
+levels.push(new Level(5, 30, 130, 530))
 
 levels[0].next = levels[1]
 levels[1].next = levels[2]
