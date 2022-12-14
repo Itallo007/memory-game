@@ -1,6 +1,7 @@
-import {getImagesName} from "./images_repository_services.js";
-import Card from "./card.js";
-import {start} from "./timer.js";
+import { getImagesName } from "./images_repository_services.js";
+import CardImage from "./card_image.js";
+import CardText from "./card_text.js";
+import { start } from "./timer.js";
 import Attempt from "./attempt.js";
 
 export default class Game {
@@ -25,14 +26,15 @@ export default class Game {
       this.create(level)
     })
   }
-  
+
   createCards = () => {
     let images = getImagesName(this.currentLevel.numberOfPars);
     let cards = []
     images.map(image => {
-      cards.push(new Card(image));
+      cards.push(new CardImage(image));
+      cards.push(new CardText(image));
     });
-    return cards;
+    return cards.sort(() => Math.random() - 0.5);
   }
 
   mountGrid = () => {
@@ -67,15 +69,15 @@ export default class Game {
   }
 
   addCardToCurrentAttempt = (cardObj) => {
-    if(!this.currentAttempt) {
+    if (!this.currentAttempt) {
       this.currentAttempt = new Attempt();
       this.incrementAttempts();
-    } 
+    }
     this.currentAttempt.addCard(cardObj);
   }
 
   incrementAttempts = () => {
-    if(this.currentAttempt) {
+    if (this.currentAttempt) {
       this.attempts.push(this.currentAttempt)
       document.getElementById("attCount").innerHTML = this.remainingAttempts
     }
@@ -88,7 +90,7 @@ export default class Game {
   }
 
   checkGame = () => {
-    if(this.totalOfParsFormed === this.currentLevel.numberOfPars) {
+    if (this.totalOfParsFormed === this.currentLevel.numberOfPars) {
       setTimeout(() => {
         alert('You win!');
         this.create(this.currentLevel.next);
@@ -100,7 +102,7 @@ export default class Game {
   }
 
   checkExhaustedAttempts = () => {
-    if(this.remainingAttempts === 0) {
+    if (this.remainingAttempts === 0) {
       window.confirm("Você não tem mais tentativas!");
       this.create(this.currentLevel);
       return false;
@@ -113,13 +115,13 @@ export default class Game {
   }
 
   unlockTheGame = () => {
-    if(this.checkExhaustedAttempts()) {
+    if (this.checkExhaustedAttempts()) {
       document.querySelector(".container").style.pointerEvents = "auto";
     }
   }
 
   static get instance() {
-    if(!Game.#instance) {
+    if (!Game.#instance) {
       Game.#instance = new Game();
     }
 

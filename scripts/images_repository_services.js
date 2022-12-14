@@ -57,7 +57,7 @@ let imageList = [
 function getImagesName(numberOfPars) {
   // let allCads = await fs.readdir(path.resolve('./') + '/images_repository');
   let imagesUnsorted = imageList.sort(() => Math.random() - 0.5).slice(0, numberOfPars)
-  return [... imagesUnsorted, ... imagesUnsorted].sort(() => Math.random() - 0.5);
+  return imagesUnsorted;
 }
 
 

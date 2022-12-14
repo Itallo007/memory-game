@@ -17,7 +17,7 @@ export default class Attempt {
   }
   
   check() {
-    this.successful =  this.cards[0].htmlElement.childNodes[0].style.backgroundImage === this.cards[1].htmlElement.childNodes[0].style.backgroundImage
+    this.successful =  this.cards[0].htmlElement.id === this.cards[1].htmlElement.id
 
     if(this.successful) {
       this.cards.map(item => {
